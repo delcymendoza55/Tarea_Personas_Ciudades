@@ -36,7 +36,11 @@ namespace Servicios.ContactosService
 				throw new Exception("La descripción debe tener al menos 2 caracteres");
 			}
 		}
-
+	public void EliminarCiudad(int id)
+	        {
+	           
+	            ciudadDatos.EliminarCiudad(id);
+	        }
 	}
 }
 
