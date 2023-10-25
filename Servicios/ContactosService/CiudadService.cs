@@ -41,6 +41,9 @@ namespace Servicios.ContactosService
 	           
 	            ciudadDatos.EliminarCiudad(id);
 	        }
+		public void ListarCiudades(){
+			ciudadDatos.ListarCiudades();
+		}
 	}
 }
 
