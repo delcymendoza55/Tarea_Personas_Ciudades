@@ -73,6 +73,30 @@ namespace Infraestructura.Datos
 	                throw;
 	            }
                  }
+	public List<CiudadModel> ListarCiudades()
+		{
+		    var ciudades = new List<CiudadModel>();
+		
+		    using var conn = conexion.GetConexion();
+		    conn.Open();
+		
+		    using var comando = new NpgsqlCommand("SELECT * FROM ciudad", conn);
+		
+		    using var reader = comando.ExecuteReader();
+		    while (reader.Read())
+		    {
+		        ciudades.Add(new CiudadModel
+		        {
+		            idCiudad = reader.GetInt32("idCiudad"),
+		            descripcion = reader.GetString("descripcion"),
+		            nombre_corto = reader.GetString("nombre_corto"),
+		            estado = reader.GetString("estado")
+		        });
+		    }
+		
+		    return ciudades;
+		}
+
 	}
 	
 }
