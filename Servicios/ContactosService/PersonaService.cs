@@ -80,5 +80,8 @@ namespace Servicios.PersonaService
                 return false;
             }
         }
+        public void ListarPersonas(){
+			ciudadDatos.ListarPersonas();
+		}
     }
 }
