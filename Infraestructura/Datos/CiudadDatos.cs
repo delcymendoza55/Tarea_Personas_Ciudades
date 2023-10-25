@@ -55,6 +55,25 @@ namespace Infraestructura.Datos
 
             comando.ExecuteNonQuery();
         }
+	public void EliminarCiudad(int id)
+	        {
+	            using var conn = conexion.GetConexion();
+	            conn.Open();
+	            using var tx = conn.BeginTransaction();
+	
+	            try
+	            {
+	                var comando = new NpgsqlCommand($"DELETE FROM ciudad WHERE idCiudad = {id}", conn, tx);
+	                comando.ExecuteNonQuery();
+	                tx.Commit();
+	            }
+	            catch (Exception)
+	            {
+	                tx.Rollback();
+	                throw;
+	            }
+                 }
 	}
+	
 }
 
