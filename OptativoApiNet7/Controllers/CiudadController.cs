@@ -42,5 +42,19 @@ namespace OptativoApi.Controllers
             servicio.modificarCiudad(ciudad);
             return Ok("Se actualizo con exito!!");
         }
+        [HttpDelete("{id}")]
+        public IActionResult EliminarCiudadAccion([FromRoute] int id)
+        {
+            try
+            {
+                
+                servicio.EliminarCiudad(id);
+                return NoContent(); 
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error al eliminar la ciudad: {ex.Message}");
+            }
+        }
     }
 }
