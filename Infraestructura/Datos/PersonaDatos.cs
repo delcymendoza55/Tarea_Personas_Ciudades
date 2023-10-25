@@ -120,5 +120,33 @@ namespace Infraestructura.Datos
                 throw;
             }
         }
+        public List<PersonaModel> ListarPersonas()
+        {
+            var personas = new List<PersonaModel>();
+        
+            using var conn = conexion.GetConexion();
+            conn.Open();
+        
+            using var comando = new NpgsqlCommand("SELECT * FROM persona", conn);
+        
+            using var reader = comando.ExecuteReader();
+            while (reader.Read())
+            {
+                personas.Add(new PersonaModel
+                {
+                    ID = reader.GetInt32("id"),
+                    Nombre = reader.GetString("nombre"),
+                    Apellido = reader.GetString("apellido"),
+                    Direccion = reader.GetString("direccion"),
+                    Email = reader.GetString("email"),
+                    Celular = reader.GetString("celular"),
+                    Edad = reader.GetInt32("edad"),
+                    CiudadID = reader.GetInt32("ciudad_id")
+                });
+            }
+        
+            return personas;
+        }
+
     }
 }
